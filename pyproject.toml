@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universal-rag-chunker"
+version = "0.2.0"
+description = "Source-traceable TXT, Markdown, PDF, DOCX and XLSX chunking"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.urls]
+Homepage = "https://Chainsy3.github.io/universal-rag-chunker/"
+Repository = "https://github.com/Chainsy3/universal-rag-chunker"
+Documentation = "https://github.com/Chainsy3/universal-rag-chunker/tree/main/docs"
+Issues = "https://github.com/Chainsy3/universal-rag-chunker/issues"
+
+[project.optional-dependencies]
+pdf = ["pypdf>=6.10,<7"]
+word = ["python-docx>=1.2,<2"]
+excel = ["openpyxl>=3.1,<4"]
+all = ["pypdf>=6.10,<7", "python-docx>=1.2,<2", "openpyxl>=3.1,<4"]
+
+[project.scripts]
+urc = "universal_rag_chunker.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+universal_rag_chunker = ["schemas/*.json"]

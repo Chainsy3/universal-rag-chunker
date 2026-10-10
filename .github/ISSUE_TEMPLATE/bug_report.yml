@@ -1,0 +1,24 @@
+name: Bug report / 问题反馈
+description: Report a reproducible parser, chunking or export issue.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened? / 发生了什么？
+      description: Describe expected and actual behavior. Do not include private document contents.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce / 复现步骤
+      description: Include the command and a minimal original or synthetic example.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment / 环境
+      placeholder: OS, Python version, package version, input format
+    validations:
+      required: true

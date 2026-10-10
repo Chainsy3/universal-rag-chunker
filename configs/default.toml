@@ -1,0 +1,13 @@
+schema_version = "1.0"
+parser = "auto"
+strategy = "recursive"
+plugins = []
+
+[chunking]
+max_characters = 1200
+minimum_characters = 100
+overlap_characters = 100
+
+[export]
+format = "jsonl"
+include_ir = true

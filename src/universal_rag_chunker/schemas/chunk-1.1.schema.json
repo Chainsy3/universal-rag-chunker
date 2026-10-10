@@ -1,0 +1,173 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.1"
+    },
+    "chunk_id": {
+      "type": "string",
+      "pattern": "^chunk_[0-9a-f]{64}$"
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^doc_[0-9a-f]{64}$"
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "text",
+        "code",
+        "table"
+      ]
+    },
+    "heading_path": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "pattern": "^block_[0-9a-f]{64}$"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "block_id",
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "source_spans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "pattern": "^block_[0-9a-f]{64}$"
+          },
+          "start": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "role": {
+            "type": "string",
+            "const": "body"
+          }
+        },
+        "required": [
+          "block_id",
+          "start",
+          "end",
+          "role"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "size": {
+      "type": "object",
+      "properties": {
+        "characters": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "characters"
+      ],
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "strategy": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "version"
+          ],
+          "additionalProperties": false
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "pipeline_version": {
+          "type": "string"
+        },
+        "config_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "strategy",
+        "plugins",
+        "pipeline_version",
+        "config_digest"
+      ],
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "chunk_id",
+    "document_id",
+    "order",
+    "text",
+    "kind",
+    "heading_path",
+    "source_spans",
+    "size",
+    "provenance",
+    "metadata"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "chunk 1.1"
+}

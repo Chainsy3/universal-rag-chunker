@@ -1,0 +1,15 @@
+name: Feature request / 功能建议
+description: Propose a format, strategy or plugin improvement.
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case / 使用场景
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior / 希望的行为
+    validations:
+      required: true

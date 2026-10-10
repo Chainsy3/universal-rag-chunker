@@ -1,0 +1,22 @@
+name: tests-and-package
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.12', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install build
+      - run: python -m build
+      - shell: bash
+        run: python -m pip install pypdf python-docx openpyxl dist/*.whl
+      - run: python -m unittest discover -s tests -v
+      - run: python -m compileall -q src
+      - run: urc chunk examples/guide.md --config configs/default.toml --output out
+      - run: urc validate out/document.ir.json --chunks out/chunks.jsonl
