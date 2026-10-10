@@ -1,10 +1,17 @@
 # Universal RAG Chunker
 
-[中文](README.md) · [Project website](https://Chainsy3.github.io/universal-rag-chunker/) · [Formats](docs/formats.md) · [Issues](https://github.com/Chainsy3/universal-rag-chunker/issues)
+[中文](README.md) · [Project website](https://Chainsy3.github.io/universal-rag-chunker/en.html) · [Formats](docs/formats.md) · [Issues](https://github.com/Chainsy3/universal-rag-chunker/issues)
 
 Source-traceable, modular document chunking for RAG pipelines. Supports TXT, Markdown, PDF, DOCX and XLSX through a common Python API and CLI, without coupling to an embedding model, vector database or industry vocabulary.
 
 **Version:** 0.2.0 candidate. **Python:** 3.11+. **License:** MIT. Not published to PyPI; install from the source checkout or a locally built wheel.
+
+## Chinese, English and mixed content
+
+Both strategies preserve Unicode text and source offsets without a language setting. `recursive` prefers Chinese sentence punctuation without requiring spaces, English sentence punctuation with closing quotes, then whitespace between words, and finally bounded character windows. Limits count Unicode characters, not tokens. Overlap is character-based; very long words may still be split. This is a deterministic heuristic, without language detection, full abbreviation handling or semantic sentence models.
+
+[English website](https://chainsy3.github.io/universal-rag-chunker/en.html) · [中文介绍页](https://chainsy3.github.io/universal-rag-chunker/)
+
 
 ## Quick start
 
@@ -64,7 +71,7 @@ python -m pip install build
 python -m build
 ```
 
-33 tests passed locally on Windows/Python 3.12. CI configuration covers Windows/Linux and Python 3.11–3.13; check actual GitHub Actions results for remote status. See [architecture](docs/architecture.md), [data model](docs/data-model.md), [plugins](docs/plugins.md), [migration](docs/migration.md) and [contributing](CONTRIBUTING.md).
+36 tests passed locally on Windows/Python 3.12. CI configuration covers Windows/Linux and Python 3.11–3.13; check actual GitHub Actions results for remote status. See [architecture](docs/architecture.md), [data model](docs/data-model.md), [plugins](docs/plugins.md), [migration](docs/migration.md) and [contributing](CONTRIBUTING.md).
 
 ## License
 

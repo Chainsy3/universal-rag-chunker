@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Universal RAG Chunker: traceable, validated chunks from TXT, Markdown, PDF, Word and Excel. A modular Python framework under MIT.">
+  <meta name="theme-color" content="#132b27">
+  <meta property="og:title" content="Universal RAG Chunker · Every chunk has a source">
+  <meta property="og:description" content="Five file formats, two data layers, one traceable RAG document pipeline.">
+  <meta property="og:type" content="website">
+  <title>Universal RAG Chunker · Every chunk has a source</title>
+  <link rel="alternate" hreflang="zh-CN" href="https://chainsy3.github.io/universal-rag-chunker/">
+  <link rel="alternate" hreflang="en" href="https://chainsy3.github.io/universal-rag-chunker/en.html">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="header wrap">
+  <a class="brand" href="#" aria-label="Universal RAG Chunker home"><img src="icon.svg" alt="" width="32" height="32"><span>Universal RAG <strong>Chunker</strong></span></a>
+  <nav aria-label="Main navigation"><a href="#formats">Formats</a><a href="#architecture">Architecture</a><a href="#start">Quick start</a><a href="index.html" lang="zh-CN" hreflang="zh-CN">中文</a><a class="nav-github" href="https://github.com/Chainsy3/universal-rag-chunker">GitHub ↗</a></nav>
+</header>
+<main id="main">
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="dot"></span> PYTHON FRAMEWORK / v0.2.0</p>
+      <h1>Every chunk.<br>A traceable <span>source.</span></h1>
+      <p class="lead">From documents to retrieval chunks, preserve structure and provenance.<br>Supports Chinese, English and mixed content across domains.</p>
+      <div class="actions"><a class="button primary" href="#start">Get started <span>↗</span></a><a class="button secondary" href="https://github.com/Chainsy3/universal-rag-chunker">View source <span>→</span></a></div>
+      <div class="hero-meta"><span>Python 3.11+</span><span>MIT license</span><span>Runs locally</span></div>
+    </div>
+    <div class="hero-visual" aria-label="Document structure and chunk provenance illustration">
+      <div class="visual-top"><span class="mono">SOURCE → STRUCTURE → CHUNK</span><span class="status">Source linked</span></div>
+      <div class="document-card"><div class="doc-icon">PDF</div><div><strong>guide.pdf</strong><span>Page 3 · Extracted text</span></div><span class="file-label">INPUT</span></div>
+      <div class="connector-line"></div>
+      <div class="ir-card"><div class="card-label"><span>01</span> Document IR</div><div class="ir-body"><div class="tree"><span>Document</span><span>└─ Page 3</span><span>　 └─ Text block</span></div><div class="locator"><span>source.locator</span><code>{ kind: "page", page: 3 }</code></div></div></div>
+      <div class="connector-line"></div>
+      <div class="chunk-card"><div class="card-label"><span>02</span> Chunk Schema <span class="mini-badge">1.1</span></div><p>Install the package, then process documents with the CLI.</p><div class="chunk-footer"><span>source_spans → block</span><span>↖ Page 3</span></div></div>
+      <p class="visual-note">Illustrative data · Page and block references stay with the output</p>
+    </div>
+  </section>
+  <div class="principles"><div class="wrap principles-inner"><span><b>Structure first</b> Document IR + Chunk Schema</span><span><b>Traceable sources</b> Pages / paragraphs / sheet locations</span><span><b>Bounded output</b> Character limits and validation</span></div></div>
+
+  <section class="section wrap" id="formats">
+    <div class="section-heading"><div><p class="eyebrow">01 / INPUT FORMATS</p><h2>Different formats. One pipeline.</h2></div><p>Parsers understand file formats.<br>Strategies handle content boundaries.</p></div>
+    <div class="format-table" role="table" aria-label="Supported formats">
+      <div class="format-row table-head" role="row"><span role="columnheader">File format</span><span role="columnheader">Extraction</span><span role="columnheader">Source location</span></div>
+      <div class="format-row" role="row"><span role="cell"><b class="format-icon text-icon">T</b><strong>TXT / Markdown</strong></span><span role="cell">UTF-8 text, headings, paragraphs and fenced code</span><span role="cell">Original character offsets</span></div>
+      <div class="format-row" role="row"><span role="cell"><b class="format-icon pdf-icon">P</b><strong>PDF</strong></span><span role="cell">Existing text layer, extracted page by page</span><span role="cell">Page number</span></div>
+      <div class="format-row" role="row"><span role="cell"><b class="format-icon word-icon">W</b><strong>Word · DOCX</strong></span><span role="cell">Body text, headings, tables and nested table text</span><span role="cell">Body element index / table row</span></div>
+      <div class="format-row" role="row"><span role="cell"><b class="format-icon excel-icon">X</b><strong>Excel · XLSX</strong></span><span role="cell">All worksheets, cells and formula text</span><span role="cell">Worksheet / row and column / cell coordinates</span></div>
+    </div>
+    <p class="note">Scanned PDF OCR, legacy .doc / .xls and complex PDF table reconstruction are not supported. Excel formulas are preserved as text, without evaluation.<a href="https://github.com/Chainsy3/universal-rag-chunker/blob/main/docs/formats.md">See full scope ↗</a></p>
+  </section>
+
+  <section class="architecture" id="architecture"><div class="section wrap">
+    <div class="section-heading"><div><p class="eyebrow">02 / MODULAR BY DESIGN</p><h2>A general core. Clear extension points.</h2></div><p>Domain vocabulary stays out of the defaults.<br>Enable a plugin when you need domain rules.</p></div>
+    <div class="pipeline" aria-label="Processing pipeline"><div><small>01</small><b>Parser</b><span>Read files and structure</span></div><i aria-hidden="true">→</i><div><small>02</small><b>Document IR</b><span>Unified document model</span></div><i aria-hidden="true">→</i><div><small>03</small><b>Strategy</b><span>Choose chunk boundaries</span></div><i aria-hidden="true">→</i><div><small>04</small><b>Chunk</b><span>Carry source references</span></div></div>
+    <div class="architecture-notes"><article><span class="detail-number">A</span><h3>Replaceable strategies</h3><p>fixed provides character windows. recursive prefers Chinese and English sentence boundaries, then whitespace between words, with character splitting as a fallback. Mixed content needs no language setting.</p></article><article><span class="detail-number">B</span><h3>Validation throughout</h3><p>Validate lengths, ordering, reference ranges and text reconstruction. Identical inputs and component settings produce identical document and chunk IDs.</p></article><article><span class="detail-number">C</span><h3>Independent export</h3><p>The Python API returns results before you decide whether to write files. Export JSON / JSONL without a vector database dependency.</p></article></div>
+  </div></section>
+
+  <section class="section wrap examples" id="output">
+    <div><p class="eyebrow">03 / TRACEABLE OUTPUT</p><h2>Beyond text.<br>Context and provenance.</h2><p class="section-copy">Each chunk links to IR text through source_spans.<br>Inspect page, body or worksheet locations alongside the chunk.</p><div class="example-tabs" role="group" aria-label="Choose an output format example"><button class="active" type="button" data-example="pdf" aria-pressed="true">PDF</button><button type="button" data-example="word" aria-pressed="false">Word</button><button type="button" data-example="excel" aria-pressed="false">Excel</button></div><p class="note">Illustrative field excerpts, not online file processing results.</p></div>
+    <div class="code-panel"><div class="code-top"><span>chunks.jsonl · Field excerpt</span><span class="mono">SCHEMA 1.1</span></div><pre tabindex="0"><code id="output-code">{
+  "schema_version": "1.1",
+  "kind": "text",
+  "text": "Run the installation command.",
+  "metadata": {
+    "core.source_locations": [
+      { "kind": "page", "page": 3 }
+    ]
+  }
+}</code></pre></div>
+  </section>
+
+  <section class="start-section" id="start"><div class="section wrap start-grid"><div><p class="eyebrow">04 / GET STARTED</p><h2>Your first document.<br>Ready to chunk.</h2><p class="section-copy">Clone the repository and install format dependencies.<br>Use the same command for all five formats.</p><a class="text-link" href="https://github.com/Chainsy3/universal-rag-chunker/blob/main/README.en.md">Read the installation guide ↗</a></div><div class="install-panel"><div class="code-top"><span>Python 3.11+ · Use a virtual environment</span><button type="button" id="copy-command">Copy commands</button></div><pre tabindex="0"><code id="install-code">git clone https://github.com/Chainsy3/universal-rag-chunker.git
+cd universal-rag-chunker
+python -m pip install ".[all]"
+urc chunk examples/guide.md --output out
+urc validate out/document.ir.json --chunks out/chunks.jsonl</code></pre><p id="copy-status" role="status" aria-live="polite">Individual extras: .[pdf], .[word], .[excel]</p></div></div></section>
+
+  <section class="section wrap docs-section" id="docs"><div><p class="eyebrow">KEEP EXPLORING</p><h2>Use it. Extend it.</h2></div><div class="doc-links"><a href="https://github.com/Chainsy3/universal-rag-chunker/blob/main/docs/architecture.md"><span>Core architecture</span><span>Explore module responsibilities ↗</span></a><a href="https://github.com/Chainsy3/universal-rag-chunker/blob/main/docs/data-model.md"><span>Unified data contracts</span><span>Explore IR and Chunk contracts ↗</span></a><a href="https://github.com/Chainsy3/universal-rag-chunker/blob/main/docs/plugins.md"><span>Plugin development</span><span>Add custom behavior ↗</span></a><a href="https://github.com/Chainsy3/universal-rag-chunker/issues"><span>Feedback and contributions</span><span>Report an issue or suggest a change ↗</span></a></div></section>
+</main>
+<footer class="wrap footer"><a class="brand" href="#"><img src="icon.svg" alt="" width="26" height="26"><span>Universal RAG Chunker</span></a><span>© 2026 Chainsy3 · MIT</span><a href="https://github.com/Chainsy3/universal-rag-chunker">Built in the open ↗</a></footer>
+</body>
+</html>

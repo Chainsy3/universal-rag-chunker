@@ -34,10 +34,16 @@ class FixedStrategy:
                 end = min(start + config.max_characters, len(block.text))
                 if self.name == "recursive" and end < len(block.text):
                     floor = start + max(config.overlap_characters + 1, config.minimum_characters, 1)
-                    candidates = [m.end() for m in re.finditer(r"\n|[。！？；.!?](?:\s|$)", block.text[start:end])
+                    candidates = [m.end() for m in re.finditer(r"\n|[。！？；]+[”’）】]*|[.!?]+[\"\'’”)]*(?=\s|$)", block.text[start:end])
                                   if start + m.end() >= floor]
                     if candidates:
                         end = start + candidates[-1]
+                    else:
+                        # Prefer English word boundaries when no sentence fits.
+                        words = [m.end() for m in re.finditer(r"\s+", block.text[start:end])
+                                 if start + m.end() >= floor]
+                        if words:
+                            end = start + words[-1]
                 piece = block.text[start:end]
                 if piece.strip():
                     kind = {"code": "code", "table_row": "table"}.get(block.type, "text")
@@ -52,6 +58,7 @@ class FixedStrategy:
 
 class RecursiveStrategy(FixedStrategy):
     name = "recursive"
+    version = VERSION + ".bilingual.1"
 
     def chunk(self, document: DocumentIR, config: Config) -> list[ChunkDraft]:
         drafts = super().chunk(document, config)

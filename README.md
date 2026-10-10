@@ -10,6 +10,13 @@
 
 **状态：0.2.0 候选版本，尚未发布。** 支持 Python 3.11+。当前实现保守保留 Markdown 标记；不宣称是完整 CommonMark 解析器，也不宣称已验证检索效果提升。
 
+## 中英文与混排切块
+
+支持中文、英文和中英混排，无需指定语言。`recursive` 优先中文句末标点（无需空格）、英文句末标点及闭合引号，再使用单词间空白，最后按字符上限兜底。保留原文、来源偏移和重叠区间；长度单位是 Unicode 字符，不是 token。极长单词仍可能按字符切分；不包含语言识别或完整的缩写、语义分句模型。
+
+[中文介绍页](https://chainsy3.github.io/universal-rag-chunker/) · [English website](https://chainsy3.github.io/universal-rag-chunker/en.html)
+
+
 ## 安装和运行
 
 在本目录使用 Python 3.11 或以上版本：
@@ -110,7 +117,7 @@ JSON Schema 随 Python 包发布，位于 `src/universal_rag_chunker/schemas/`�
 - [插件开发](docs/plugins.md)
 - [迁移说明](docs/migration.md)
 - [已知限制](docs/implementation.md)
-- [本地验证记录](docs/verification.md)：Windows/Python 3.12 上 33 项测试通过；跨平台 CI 状态以 GitHub Actions 实际结果为准。
+- [本地验证记录](docs/verification.md)：Windows/Python 3.12 上 36 项测试通过；跨平台 CI 状态以 GitHub Actions 实际结果为准。
 - [贡献指南](CONTRIBUTING.md) · [变更记录](CHANGELOG.md)
 
 ## 许可证

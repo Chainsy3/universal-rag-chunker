@@ -9,6 +9,8 @@
   <meta property="og:description" content="五种文件格式，两层数据模型，一条可追溯的 RAG 文档处理路径。">
   <meta property="og:type" content="website">
   <title>Universal RAG Chunker · 每个切块都有来处</title>
+  <link rel="alternate" hreflang="zh-CN" href="https://chainsy3.github.io/universal-rag-chunker/">
+  <link rel="alternate" hreflang="en" href="https://chainsy3.github.io/universal-rag-chunker/en.html">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -17,14 +19,14 @@
 <a class="skip" href="#main">跳至正文</a>
 <header class="header wrap">
   <a class="brand" href="#" aria-label="Universal RAG Chunker 首页"><img src="icon.svg" alt="" width="32" height="32"><span>Universal RAG <strong>Chunker</strong></span></a>
-  <nav aria-label="主导航"><a href="#formats">格式支持</a><a href="#architecture">架构</a><a href="#start">快速开始</a><a class="nav-github" href="https://github.com/Chainsy3/universal-rag-chunker">GitHub ↗</a></nav>
+  <nav aria-label="主导航"><a href="#formats">格式支持</a><a href="#architecture">架构</a><a href="#start">快速开始</a><a href="en.html" lang="en" hreflang="en">English</a><a class="nav-github" href="https://github.com/Chainsy3/universal-rag-chunker">GitHub ↗</a></nav>
 </header>
 <main id="main">
   <section class="hero wrap">
     <div class="hero-copy">
       <p class="eyebrow"><span class="dot"></span> PYTHON FRAMEWORK / v0.2.0</p>
       <h1>让每个切块，<br>都能找到<span>来处。</span></h1>
-      <p class="lead">从文档到检索文本块，保留结构，也保留来源。<br>为不同领域的 RAG 项目提供一套可扩展的切块基础。</p>
+      <p class="lead">从文档到检索文本块，保留结构，也保留来源。<br>支持中文、英文与中英混排，为不同领域的 RAG 项目提供可扩展的切块基础。</p>
       <div class="actions"><a class="button primary" href="#start">开始使用 <span>↗</span></a><a class="button secondary" href="https://github.com/Chainsy3/universal-rag-chunker">查看源码 <span>→</span></a></div>
       <div class="hero-meta"><span>Python 3.11+</span><span>MIT 许可证</span><span>本地运行</span></div>
     </div>
@@ -55,7 +57,7 @@
   <section class="architecture" id="architecture"><div class="section wrap">
     <div class="section-heading"><div><p class="eyebrow">02 / MODULAR BY DESIGN</p><h2>通用核心，明确的扩展边界。</h2></div><p>不把行业词表写进默认行为。<br>需要领域规则时，显式启用插件。</p></div>
     <div class="pipeline" aria-label="处理流程"><div><small>01</small><b>Parser</b><span>读取文件与结构</span></div><i aria-hidden="true">→</i><div><small>02</small><b>Document IR</b><span>统一文档表示</span></div><i aria-hidden="true">→</i><div><small>03</small><b>Strategy</b><span>确定切块边界</span></div><i aria-hidden="true">→</i><div><small>04</small><b>Chunk</b><span>携带来源引用</span></div></div>
-    <div class="architecture-notes"><article><span class="detail-number">A</span><h3>策略可替换</h3><p>fixed 提供字符窗口基线；recursive 优先利用结构、换行与句界，再按字符兜底。</p></article><article><span class="detail-number">B</span><h3>校验贯穿流程</h3><p>检查长度、顺序、引用范围与内容重建。相同输入和组件配置生成相同文档与切块 ID。</p></article><article><span class="detail-number">C</span><h3>导出保持独立</h3><p>Python API 返回结果后再决定是否写盘。输出 JSON / JSONL，不绑定向量数据库。</p></article></div>
+    <div class="architecture-notes"><article><span class="detail-number">A</span><h3>策略可替换</h3><p>fixed 提供字符窗口基线；recursive 优先识别中文句界、英文句界与单词间空白，再按字符兜底。中英混排无需切换配置。</p></article><article><span class="detail-number">B</span><h3>校验贯穿流程</h3><p>检查长度、顺序、引用范围与内容重建。相同输入和组件配置生成相同文档与切块 ID。</p></article><article><span class="detail-number">C</span><h3>导出保持独立</h3><p>Python API 返回结果后再决定是否写盘。输出 JSON / JSONL，不绑定向量数据库。</p></article></div>
   </div></section>
 
   <section class="section wrap examples" id="output">

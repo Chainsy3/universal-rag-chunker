@@ -80,6 +80,33 @@ class CoreTests(unittest.TestCase):
             self.assertTrue(all(len(c.text)<=20 for c in result.chunks))
             self.assertTrue(any(c.metadata['core.continuation'] for c in result.chunks))
 
+    def test_chinese_sentence_without_spaces(self):
+        result = self.run_source('第一句。第二句。第三句。', '.txt', max_characters=7,
+                                 minimum_characters=0, overlap_characters=0)
+        self.assertEqual([c.text for c in result.chunks], ['第一句。', '第二句。', '第三句。'])
+        self.assertEqual(result.report['coverage'], 1)
+
+    def test_english_word_boundary_and_sentence_quotes(self):
+        result = self.run_source('Alpha beta gamma delta', '.txt', max_characters=13,
+                                 minimum_characters=0, overlap_characters=0)
+        self.assertEqual(result.chunks[0].text, 'Alpha beta ')
+        result = self.run_source('Say "Hello!" Next sentence.', '.txt', max_characters=18,
+                                 minimum_characters=0, overlap_characters=0)
+        self.assertEqual(result.chunks[0].text, 'Say "Hello!"')
+
+    def test_bilingual_exact_spans_and_determinism(self):
+        text = '中文句子。English words follow!下一句包含 RAG 技术。End.'
+        for strategy in ('fixed', 'recursive'):
+            options = dict(strategy=strategy, max_characters=20,
+                           minimum_characters=0, overlap_characters=3)
+            first = self.run_source(text, '.txt', **options)
+            second = self.run_source(text, '.txt', **options)
+            self.assertEqual(first.report['coverage'], 1)
+            self.assertTrue(all(len(c.text) <= 20 for c in first.chunks))
+            self.assertEqual([c.to_dict() for c in first.chunks],
+                             [c.to_dict() for c in second.chunks])
+            validate_chunks(first.document, first.chunks, 20)
+
     def test_empty_and_whitespace_rejected(self):
         for text in ('',' \r\n\t'):
             with self.assertRaisesRegex(ValidationError,'EMPTY_DOCUMENT'):

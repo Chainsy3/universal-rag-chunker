@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Improve recursive boundaries for Chinese punctuation, English closing quotes and word whitespace; preserve character limits and source spans.
+- Add bilingual/mixed-content regression tests and linked Chinese/English project websites.
+- Recursive component revision: `0.2.0.bilingual.1`; changed boundaries intentionally change chunk IDs.
+
 ## 0.2.0 — unreleased
 
 - Added optional pypdf, python-docx and openpyxl adapters for PDF/DOCX/XLSX.
