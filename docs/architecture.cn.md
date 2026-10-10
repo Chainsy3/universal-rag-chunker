@@ -1,5 +1,7 @@
 # 架构
 
+[中文](architecture.cn.md) · [English](architecture.en.md)
+
 `Parser → DocumentIR → Validator → Plugin.prepare → Strategy → Plugin.enrich → Finalizer → Validator → RunResult`
 
 调用方选择是否交给 Exporter；CLI 在校验成功后导出。config.py 管配置；registry.py 管显式组件注册；pipeline.py 只协调；models.py 提供类型化数据类；parsers.py、strategies.py、plugins.py 通过 Protocol 描述扩展契约。

@@ -1,5 +1,7 @@
 # 本地验证记录 — 0.2.0
 
+[中文](verification.cn.md) · [English](verification.en.md)
+
 日期：2026-10-10。环境：Windows、Python 3.12.14。
 
 - 33 项 unittest 全部通过，无跳过。覆盖文本解析、配置、来源/身份、确定性、长度、插件、CLI、导出失败与覆盖保护，以及真实 PDF/DOCX/XLSX 文件解析。
@@ -13,6 +15,6 @@
 - 验证新 Schema 1.1，并保留旧 Schema 1.0 输出的导出/校验测试。
 - 格式依赖使用本机已安装的 pypdf 6.10.0、python-docx 1.2.0、openpyxl 3.1.5；没有为本次验证下载依赖。独立安装目录隔离项目包，仍使用该运行环境提供的格式依赖。
 
-初始版本已通过 GitHub Actions Windows/Linux、Python 3.11/3.12/3.13 六组测试。此次中英文优化在 Windows Python 3.12 下通过 36 项测试（包括中文无空格句界、英文单词/引号、中英混排来源和确定性），远程更新的结果以对应 Actions 运行记录为准。现有系统默认 Python 3.9 不满足项目要求，本轮使用应用附带 Python 3.12。
+初始版本已通过 GitHub Actions Windows/Linux、Python 3.11/3.12/3.13 六组测试。此次中英文优化在 Windows Python 3.12 下通过 36 项测试（包括中文无空格句界、英文单词/引号、中英混排来源和确定性），本次更新的 Windows/Linux、Python 3.11/3.12/3.13 六组远程测试也已全部通过：[运行记录](https://github.com/Chainsy3/universal-rag-chunker/actions/runs/38021558746)。现有系统默认 Python 3.9 不满足项目要求，本轮使用应用附带 Python 3.12。
 
 结果覆盖的是工程不变量，不包含检索质量基准或完整 Markdown 兼容性认证。

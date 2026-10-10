@@ -1,5 +1,7 @@
 # 数据契约 1.1（兼容读取 1.0）
 
+[中文](data-model.cn.md) · [English](data-model.en.md)
+
 DocumentIR 保存 source、parser、blocks、metadata、document_type。每个 block 有唯一 ID、连续 order、parent_id、type、text、locator、attributes。父节点必须是此前出现的 heading，因此不会出现环。heading attributes 包含 level/title。
 
 原始 UTF-8 文件按 Unicode code point 定位，0 起左闭右开。每个 text locator 对应原始字符串片段；不进行换行归一化。所有 block.text 拼接后必须得到原始源文本，hash 必须与 source.content_sha256 一致。UTF-8 BOM 按源字符保留。

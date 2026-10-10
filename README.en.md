@@ -1,6 +1,6 @@
 # Universal RAG Chunker
 
-[中文](README.md) · [Project website](https://Chainsy3.github.io/universal-rag-chunker/en.html) · [Formats](docs/formats.md) · [Issues](https://github.com/Chainsy3/universal-rag-chunker/issues)
+[中文](README.md) · [Project website](https://Chainsy3.github.io/universal-rag-chunker/en.html) · [Formats](docs/formats.en.md) · [Issues](https://github.com/Chainsy3/universal-rag-chunker/issues)
 
 Source-traceable, modular document chunking for RAG pipelines. Supports TXT, Markdown, PDF, DOCX and XLSX through a common Python API and CLI, without coupling to an embedding model, vector database or industry vocabulary.
 
@@ -71,7 +71,7 @@ python -m pip install build
 python -m build
 ```
 
-36 tests passed locally on Windows/Python 3.12. CI configuration covers Windows/Linux and Python 3.11–3.13; check actual GitHub Actions results for remote status. See [architecture](docs/architecture.md), [data model](docs/data-model.md), [plugins](docs/plugins.md), [migration](docs/migration.md) and [contributing](CONTRIBUTING.md).
+36 tests passed locally on Windows/Python 3.12. CI configuration covers Windows/Linux and Python 3.11–3.13; check actual GitHub Actions results for remote status. See [architecture](docs/architecture.en.md), [data model](docs/data-model.en.md), [plugins](docs/plugins.en.md), [migration](docs/migration.en.md) and [contributing](CONTRIBUTING.md).
 
 ## License
 

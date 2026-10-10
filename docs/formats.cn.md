@@ -1,5 +1,7 @@
 # 格式支持与来源定位
 
+[中文](formats.cn.md) · [English](formats.en.md)
+
 安装全部格式依赖：`python -m pip install ".[all]"`。在已安装包的环境升级：`python -m pip install "universal-rag-chunker[all]"` 需要包已经发布，当前本地候选版本请使用目录或 wheel 路径。
 
 | 格式 | 解析内容 | 来源 | 本版边界 |

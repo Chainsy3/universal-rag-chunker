@@ -1,5 +1,7 @@
 # 自定义插件
 
+[中文](plugins.cn.md) · [English](plugins.en.md)
+
 ```python
 from universal_rag_chunker import Config, Pipeline, Registry
 

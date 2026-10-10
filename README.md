@@ -1,6 +1,6 @@
 # Universal RAG Chunker
 
-[English](README.en.md) · [项目介绍页](https://Chainsy3.github.io/universal-rag-chunker/) · [格式支持](docs/formats.md) · [架构](docs/architecture.md) · [问题反馈](https://github.com/Chainsy3/universal-rag-chunker/issues)
+[English](README.en.md) · [项目介绍页](https://Chainsy3.github.io/universal-rag-chunker/) · [格式支持](docs/formats.cn.md) · [架构](docs/architecture.cn.md) · [问题反馈](https://github.com/Chainsy3/universal-rag-chunker/issues)
 
 ![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![MIT License](https://img.shields.io/badge/License-MIT-225b47)
@@ -91,7 +91,7 @@ flowchart LR
 
 TXT/Markdown IR 无损分割原始字符串；二进制格式 IR 保存解析器提取/规范化后的文本及来源定位，不能从提取文本恢复原文件。二进制覆盖率衡量 **已提取文本** 的非空白字符，不代表图片、复杂版式、页眉页脚等原文件内容被全部识别。PDF 不恢复表格结构；Word 不提取图片、文本框、页眉页脚及修订内容；Excel 不计算公式、不猜测表头。合并单元格只保留锚点值，长表格行可拆成多个带同一来源行号的块。
 
-插件的 prepare 阶段只允许修改文档 metadata。Chunk 文本必须能由 source_spans 直接拼接重建，不支持无来源的标题前缀或删除内容。未知 schema 版本拒绝。完整限制与设计差异见 [实现说明](docs/implementation.md)。
+插件的 prepare 阶段只允许修改文档 metadata。Chunk 文本必须能由 source_spans 直接拼接重建，不支持无来源的标题前缀或删除内容。未知 schema 版本拒绝。完整限制与设计差异见 [实现说明](docs/implementation.cn.md)。
 
 ## 配置与错误
 
@@ -113,11 +113,11 @@ JSON Schema 随 Python 包发布，位于 `src/universal_rag_chunker/schemas/`�
 
 ## 文档与贡献
 
-- [数据契约与来源定位](docs/data-model.md)
-- [插件开发](docs/plugins.md)
-- [迁移说明](docs/migration.md)
-- [已知限制](docs/implementation.md)
-- [本地验证记录](docs/verification.md)：Windows/Python 3.12 上 36 项测试通过；跨平台 CI 状态以 GitHub Actions 实际结果为准。
+- [数据契约与来源定位](docs/data-model.cn.md)
+- [插件开发](docs/plugins.cn.md)
+- [迁移说明](docs/migration.cn.md)
+- [已知限制](docs/implementation.cn.md)
+- [本地验证记录](docs/verification.cn.md)：Windows/Python 3.12 上 36 项测试通过；跨平台 CI 状态以 GitHub Actions 实际结果为准。
 - [贡献指南](CONTRIBUTING.md) · [变更记录](CHANGELOG.md)
 
 ## 许可证
